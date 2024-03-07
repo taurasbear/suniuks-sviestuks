@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private static bool doublejump = false;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     // private Animator anim;
@@ -13,14 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
-
     private enum MovementState { idle, running, jumping, falling }
-
-    [SerializeField] private AudioSource jumpSoundEffect;
 
     // Start is called before the first frame update
     private void Start()
     {
+      
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -30,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(rb.name == "Player1")
+        if (rb.name == "Player1")
         {
             bool isMovingRight = Input.GetKey(KeyCode.D);
             bool isMovingLeft = Input.GetKey(KeyCode.A);
@@ -46,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
             HandleMovement(isMovingRight, isMovingLeft);
             Jump(jump);
         }
-
 
         // UpdateAnimationState();
     }
@@ -71,14 +67,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            doublejump = true;
         }
-        if (jump && !IsGrounded() && doublejump)
-        {
-            // jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce-2);
-             doublejump = false;
-        }
+        
     }
 
     //private void UpdateAnimationState()

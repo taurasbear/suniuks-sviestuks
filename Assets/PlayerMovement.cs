@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,19 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     // private Animator anim;
 
+    private bool isWallSliding;
+    private float wallSlidingSpeed = 1f;
+
+    private float horizontal;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
+
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
+
     private enum MovementState { idle, running, jumping, falling }
 
     // Start is called before the first frame update
@@ -27,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
+
         if (rb.name == "Player1")
         {
             bool isMovingRight = Input.GetKey(KeyCode.D);
@@ -44,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             Jump(jump);
         }
 
+        WallSlide();
         // UpdateAnimationState();
     }
     private void HandleMovement(bool isMovingRight,bool isMovingLeft)
@@ -69,6 +82,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         
+    }
+
+    private void WallSlide()
+    {
+        if(IsWalled() && !IsGrounded() && horizontal != 0)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;  
+        }
     }
 
     //private void UpdateAnimationState()
@@ -105,5 +131,11 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+
+
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 }

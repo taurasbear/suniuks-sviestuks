@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 010fb8b30364cd94a99f8e08da61dea4
+guid: a15e8cd8ea491c74fa2f14712fe0849b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,18 +108,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WallLeft
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb4ca912e8b12b468628e1a6aa7cac4
+      internalID: 475540954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1fce33be2b6559c48b69ec752d3ae048
+    spriteID: 367549dbe5c55db439b027a817a70536
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WallLeft: 475540954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

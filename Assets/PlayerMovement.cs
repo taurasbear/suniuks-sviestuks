@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     private float wallSlidingSpeed = 1f;
 
     private float horizontal;
+
+    private bool isFacingRight = true;
+
+    private Stopwatch wallSlideTimer;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask jumpableGround;
@@ -31,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        wallSlideTimer = new Stopwatch();
       //  anim = GetComponent<Animator>();
     }
 
@@ -45,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
             bool isMovingLeft = Input.GetKey(KeyCode.A);
             bool jump = Input.GetKeyDown(KeyCode.W);
             HandleMovement(isMovingRight, isMovingLeft);
+
+            HandleFacing();
+
+            WallSlide(isMovingRight, isMovingLeft);
             Jump(jump);
         }
         if (rb.name == "Player2")
@@ -53,10 +63,14 @@ public class PlayerMovement : MonoBehaviour
             bool isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
             bool jump = Input.GetKeyDown(KeyCode.UpArrow);
             HandleMovement(isMovingRight, isMovingLeft);
+            
+            HandleFacing();
+
+            //WallSlide(isMovingRight, isMovingLeft);
             Jump(jump);
         }
 
-        WallSlide();
+        
         // UpdateAnimationState();
     }
     private void HandleMovement(bool isMovingRight,bool isMovingLeft)
@@ -73,6 +87,17 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
     }
+    private void HandleFacing()
+    {
+        if (isFacingRight && rb.velocity.x < 0)
+        {
+            Flip();
+        }
+        else if (!isFacingRight && rb.velocity.x > 0)
+        {
+            Flip();
+        }
+    }
     private void Jump(bool jump)
     {
 
@@ -84,9 +109,13 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void WallSlide()
+    private void WallSlide(bool isMovingRight, bool isMovingLeft)
     {
-        if(IsWalled() && !IsGrounded() && horizontal != 0)
+        if(isMovingRight || isMovingLeft)
+        {
+            wallSlideTimer.Restart();
+        }
+        if(IsWalled() && !IsGrounded() && wallSlideTimer.Elapsed.TotalSeconds < 0.2)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -133,9 +162,13 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
-
     private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        rb.transform.Rotate(0f, 180f, 0f);
     }
 }

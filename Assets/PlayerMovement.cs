@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerMovement : MonoBehaviour
 {
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     // private Animator anim;
-
+    public static bool isAir;
     private bool isWallSliding;
     private float wallSlidingSpeed = 1f;
 
@@ -101,12 +103,12 @@ public class PlayerMovement : MonoBehaviour
     private void Jump(bool jump)
     {
 
-        if (jump && IsGrounded())
+        if (jump && IsGrounded() || jump && IsWalled())
         {
             // jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        
+      
     }
 
     private void WallSlide(bool isMovingRight, bool isMovingLeft)
@@ -125,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = false;  
         }
     }
+  
 
     //private void UpdateAnimationState()
     //{

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
@@ -19,7 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isFacingRight = true;
 
+    [SerializeField] private bool isAlive = true;
+
     private Stopwatch wallSlideTimer;
+    private Vector2 respawnPoint;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask jumpableGround;
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         wallSlideTimer = new Stopwatch();
+        SetRespawnPoint(transform.position);
       //  anim = GetComponent<Animator>();
     }
 
@@ -49,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.name == "Player1")
         {
+            if(!isAlive)
+            {
+                return;
+            }
             bool isMovingRight = Input.GetKey(KeyCode.D);
             bool isMovingLeft = Input.GetKey(KeyCode.A);
             bool jump = Input.GetKeyDown(KeyCode.W);
@@ -61,6 +70,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (rb.name == "Player2")
         {
+            if (!isAlive)
+            {
+                return;
+            }
             bool isMovingRight = Input.GetKey(KeyCode.RightArrow);
             bool isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
             bool jump = Input.GetKeyDown(KeyCode.UpArrow);
@@ -76,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         // UpdateAnimationState();
     }
     private void HandleMovement(bool isMovingRight,bool isMovingLeft)
-    {
+    {       
         float horizontalInput = 0f;
         if (isMovingRight)
         {
@@ -127,8 +140,25 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = false;  
         }
     }
-  
 
+    public void SetRespawnPoint(Vector2 point)
+    {
+        respawnPoint = point;
+    }
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1f);
+        isAlive = true;
+        coll.enabled = true;
+        transform.position = respawnPoint;
+        
+    }
+    public void Die()
+    {
+        isAlive = false;
+        coll.enabled = false;
+        StartCoroutine(Respawn());
+    }
     //private void UpdateAnimationState()
     //{
     //    MovementState state;
@@ -174,4 +204,5 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = !isFacingRight;
         rb.transform.Rotate(0f, 180f, 0f);
     }
+
 }

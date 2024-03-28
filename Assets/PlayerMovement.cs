@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
     [SerializeField] private bool isAlive = true;
+    private float respawnTime = 1f;
 
     private Stopwatch wallSlideTimer;
     private Vector2 respawnPoint;
@@ -147,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(respawnTime);
         isAlive = true;
         coll.enabled = true;
         transform.position = respawnPoint;
@@ -205,4 +206,24 @@ public class PlayerMovement : MonoBehaviour
         rb.transform.Rotate(0f, 180f, 0f);
     }
 
+
+
+
+    // Methods to help with testing
+    public Vector2 GetRespawnPoint()
+    {
+        return respawnPoint;
+    }
+    public bool GetIsAlive()
+    {
+        return isAlive;
+    }
+    public bool GetColliderEnabled()
+    {
+        return coll.enabled;
+    }
+    public float GetRespawnTime()
+    {
+        return respawnTime;
+    }   
 }

@@ -15,10 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public static bool isAir;
     private bool isWallSliding;
     private float wallSlidingSpeed = 1f;
-
+    private bool isFacingRight = true;
     private float horizontal;
 
-    private bool isFacingRight = true;
 
     [SerializeField] private bool isAlive = true;
     private float respawnTime = 1f;
@@ -82,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             
             HandleFacing();
 
-            //WallSlide(isMovingRight, isMovingLeft);
+            WallSlide(isMovingRight, isMovingLeft);
             Jump(jump);
         }
 
@@ -116,13 +115,23 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(bool jump)
     {
-
-        if (jump && IsGrounded() || jump && IsWalled())
+        if (rb.name == "Player2")
         {
-            // jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (jump && IsGrounded() || jump && IsWalled())
+            {
+                // jumpSoundEffect.Play();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
-      
+        if (rb.name == "Player1")
+        {
+            if (jump && IsGrounded())
+            {
+                // jumpSoundEffect.Play();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+        }
+
     }
 
     private void WallSlide(bool isMovingRight, bool isMovingLeft)

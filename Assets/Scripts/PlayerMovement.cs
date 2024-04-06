@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using Codice.Client.BaseCommands.Update.Fast.Transformers;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
@@ -30,9 +31,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
+
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
-
+    private float wallJumpCount=0;
+    private float jumpTimer = 0f;
+    private float jumpCooldown = 1f;
     private enum MovementState { idle, running, jumping, falling }
 
     // Start is called before the first frame update
@@ -117,10 +121,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (rb.name == "Player2")
         {
-            if (jump && IsGrounded() || jump && IsWalled())
+            if (jump && IsGrounded())
             {
                 // jumpSoundEffect.Play();
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+            else if (jump && !IsGrounded() && IsWalled() && wallJumpCount < 1)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                wallJumpCount += 1;
+            }
+            if (!IsWalled())
+            {
+                wallJumpCount = 0;
             }
         }
         if (rb.name == "Player1")
@@ -133,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
 
     private void WallSlide(bool isMovingRight, bool isMovingLeft)
     {

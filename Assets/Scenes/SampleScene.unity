@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 509933930}
   - component: {fileID: 509933929}
   - component: {fileID: 509933933}
+  - component: {fileID: 509933934}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -807,10 +808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
-  rb: {fileID: 509933930}
+  rb: {fileID: 0}
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 72
   moveSpeed: 7
   jumpForce: 14
   wallCheck: {fileID: 407129882}
@@ -962,6 +963,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &509933934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509933923}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8abc231c438112f41a6cc9a4a77dcb7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 10
+  wallJumpXLimit: 1
+  wallJumpTimeWindow: 10
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1068,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.338894, y: -1.1860299, z: -2.055861}
+  m_LocalPosition: {x: -9.394306, y: -1.18658, z: -2.055861}
   m_LocalScale: {x: 1, y: 0.9949, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1329,7 +1348,7 @@ GameObject:
   - component: {fileID: 639925912}
   m_Layer: 7
   m_Name: LeftWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1989,7 +2008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
-  rb: {fileID: 703405029}
+  rb: {fileID: 0}
   jumpableGround:
     serializedVersion: 2
     m_Bits: 136
@@ -3077,7 +3096,7 @@ GameObject:
   - component: {fileID: 1213468292}
   m_Layer: 3
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

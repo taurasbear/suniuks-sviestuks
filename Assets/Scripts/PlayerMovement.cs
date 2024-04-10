@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class PlayerMovement : MonoBehaviour
 {
     private BoxCollider2D coll;
@@ -34,21 +36,25 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
-    private float wallJumpCount=0;
+    private float wallJumpCount = 0;
     private float jumpTimer = 0f;
     private float jumpCooldown = 1f;
     private enum MovementState { idle, running, jumping, falling }
 
+
+    bool isMovingRight = false;
+    bool isMovingLeft = false;
+
     // Start is called before the first frame update
     private void Start()
     {
-      
+
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         wallSlideTimer = new Stopwatch();
         SetRespawnPoint(transform.position);
-      //  anim = GetComponent<Animator>();
+        //  anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,12 +64,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.name == "Player1")
         {
-            if(!isAlive)
+            if (!isAlive)
             {
                 return;
             }
-            bool isMovingRight = Input.GetKey(KeyCode.D);
-            bool isMovingLeft = Input.GetKey(KeyCode.A);
+            isMovingRight = Input.GetKey(KeyCode.D);
+            isMovingLeft = Input.GetKey(KeyCode.A);
             bool jump = Input.GetKeyDown(KeyCode.W);
             HandleMovement(isMovingRight, isMovingLeft);
 
@@ -78,22 +84,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-            bool isMovingRight = Input.GetKey(KeyCode.RightArrow);
-            bool isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
+            isMovingRight = Input.GetKey(KeyCode.RightArrow);
+            isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
             bool jump = Input.GetKeyDown(KeyCode.UpArrow);
             HandleMovement(isMovingRight, isMovingLeft);
-            
+
             HandleFacing();
 
             WallSlide(isMovingRight, isMovingLeft);
             Jump(jump);
         }
 
-        
+
         // UpdateAnimationState();
     }
-    private void HandleMovement(bool isMovingRight,bool isMovingLeft)
-    {       
+    private void HandleMovement(bool isMovingRight, bool isMovingLeft)
+    {
         float horizontalInput = 0f;
         if (isMovingRight)
         {
@@ -150,18 +156,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide(bool isMovingRight, bool isMovingLeft)
     {
-        if(isMovingRight || isMovingLeft)
+        if (isMovingRight || isMovingLeft)
         {
             wallSlideTimer.Restart();
         }
-        if(IsWalled() && !IsGrounded() && wallSlideTimer.Elapsed.TotalSeconds < 0.2)
+        if (IsWalled() && !IsGrounded() && wallSlideTimer.Elapsed.TotalSeconds < 0.2)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
-            isWallSliding = false;  
+            isWallSliding = false;
         }
     }
 
@@ -175,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         isAlive = true;
         coll.enabled = true;
         transform.position = respawnPoint;
-        
+
     }
     public void Die()
     {
@@ -232,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    // Methods to help with testing
+    // Methods for testing
     public Vector2 GetRespawnPoint()
     {
         return respawnPoint;
@@ -248,5 +254,25 @@ public class PlayerMovement : MonoBehaviour
     public float GetRespawnTime()
     {
         return respawnTime;
-    }   
+    }
+    public void SetMovingRight(bool movingRight)
+    {
+        isMovingRight = movingRight;
+    }
+    public void SetMovingLeft(bool movingLeft)
+    {
+        isMovingLeft = movingLeft;
+    }
+    public void SetRigidBodyName(string name)
+    {
+        rb.name = name;
+    }
+    public void TestHandleMovement(bool isMovingRight, bool isMovingLeft)
+    {
+        HandleMovement(isMovingRight, isMovingLeft);
+    }
+    public bool GetIsFacingRight()
+    {
+        return isFacingRight;
+    }
 }

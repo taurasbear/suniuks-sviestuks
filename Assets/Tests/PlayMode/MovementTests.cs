@@ -7,18 +7,81 @@ using UnityEngine.TestTools;
 
 public class MovementTests
 {
-    [UnityTest]
-    public IEnumerator DeathRespawn()
+    private GameObject testObject;
+    private PlayerMovement player;
+    [SetUp]
+    public void Setup()
     {
-        var gameObject = new GameObject();
-        var player1 = gameObject.AddComponent<PlayerMovement>();
-        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
-        player1.Die();
-        Assert.AreEqual(false, player1.GetIsAlive());
-        Assert.AreEqual(false, player1.GetColliderEnabled());
-        yield return new WaitForSeconds(player1.GetRespawnTime());
-        Assert.AreEqual(true, player1.GetIsAlive());
-        Assert.AreEqual(true, player1.GetColliderEnabled());
-        
+        testObject = GameObject.Instantiate(new GameObject());
+        player = testObject.AddComponent<PlayerMovement>();
     }
+    [UnityTest]
+    public IEnumerator DeathTest()
+    {
+        player.Die();
+        Assert.AreEqual(false, player.GetIsAlive());
+        Assert.AreEqual(false, player.GetColliderEnabled());
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator RespawnTest()
+    {
+        player.Die();
+        yield return new WaitForSeconds(player.GetRespawnTime());
+        Assert.AreEqual(true, player.GetIsAlive());
+        Assert.AreEqual(true, player.GetColliderEnabled());
+    }
+
+    [UnityTest]
+    public IEnumerator MovementRightTest()
+    {
+        var position = player.transform.position;
+        // player moves to right
+        player.TestHandleMovement(true, false);
+
+        yield return new WaitForSeconds(2f);
+        
+        // Assert
+        var newPosition = player.transform.position;
+        Assert.Greater(newPosition.x, position.x);
+
+        Debug.Log($"Position: {position}");
+        Debug.Log($"New Position: {newPosition}");
+    }
+
+    [UnityTest]
+    public IEnumerator MovementLeftTest()
+    {
+        var position = player.transform.position;
+        // player moves to right
+        player.TestHandleMovement(false, true);
+
+        yield return new WaitForSeconds(2f);
+
+        // Assert
+        var newPosition = player.transform.position;
+        Assert.Less(newPosition.x, position.x);
+
+        Debug.Log($"Position: {position}");
+        Debug.Log($"New Position: {newPosition}");
+    }
+
+    [UnityTest]
+    public IEnumerator MovementNoneTest()
+    {
+        var position = player.transform.position;
+        // player moves to right
+        player.TestHandleMovement(false, false);
+
+        yield return new WaitForSeconds(2f);
+
+        // Assert
+        var newPosition = player.transform.position;
+        Assert.AreEqual(newPosition.x, position.x);
+
+        Debug.Log($"Position: {position}");
+        Debug.Log($"New Position: {newPosition}");
+    }
+
 }

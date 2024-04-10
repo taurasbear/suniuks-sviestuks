@@ -275,4 +275,22 @@ public class PlayerMovement : MonoBehaviour
     {
         return isFacingRight;
     }
+
+    public void GetFlip()
+    {
+        Flip();
+    }
+
+    public void GetHandleFacing()
+    {
+        HandleFacing();
+    }
+    public void VelocityChanged(float velocity)
+    {
+        rb.velocity = new Vector2(velocity, rb.velocity.y);
+    }
+    public bool GetIsGrounded()
+    {
+        return IsGrounded();
+    }
 }

@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     bool isMovingLeft = false;
 
     // Start is called before the first frame update
-    private void Start()
+    public void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    public void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
     }
-    private void Jump(bool jump)
+    public void Jump(bool jump)
     {
         if (rb.name == "Player2")
         {
@@ -293,4 +293,13 @@ public class PlayerMovement : MonoBehaviour
     {
         return IsGrounded();
     }
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+    public float GetSpeed()
+    {
+        return rb.velocity.x;
+    }
+   
 }

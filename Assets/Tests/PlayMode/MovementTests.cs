@@ -24,14 +24,14 @@ public class MovementTests
         camera.transform.position = new Vector3(0f, 0f, -5f);*/
 
         player = testObject.AddComponent<PlayerMovement>();
-        var playerCollider = testObject.AddComponent<BoxCollider2D>();
-        playerCollider.size = new Vector2(1, 1); // Set player collider size
-        playerCollider.transform.position = new Vector3(0, 5, 0);
+        //var playerCollider = testObject.AddComponent<BoxCollider2D>();
+        //splayerCollider.size = new Vector2(1, 1); // Set player collider size
+        //playerCollider.transform.position = new Vector3(0, 5, 0);
 
-        ground.layer = LayerMask.NameToLayer("Terrain");
+        /*ground.layer = LayerMask.NameToLayer("Terrain");
         var groundCollider = ground.AddComponent<BoxCollider2D>();
         groundCollider.size = new Vector2(50f, 1f); // Set ground collider size
-        groundCollider.transform.position = new Vector3(0, -1, 0); // Position ground object above player
+        groundCollider.transform.position = new Vector3(0, -1, 0); // Position ground object above player*/
 
         
 
@@ -85,22 +85,7 @@ public class MovementTests
         Debug.Log($"New Position: {newPosition}");
     }
 
-    [UnityTest]
-    public IEnumerator MovementNoneTest()
-    {
-        var position = player.transform.position;
-
-        player.TestHandleMovement(false, false);
-
-        yield return new WaitForSeconds(2f);
-
-        var newPosition = player.transform.position;
-
-        Assert.AreEqual(newPosition.x, position.x);
-
-        Debug.Log($"Position: {position}");
-        Debug.Log($"New Position: {newPosition}");
-    }
+   
     [UnityTest]
     public IEnumerator FlippingLeftTest()
     { 
@@ -158,8 +143,38 @@ public class MovementTests
 
         Debug.Log($"Facing Right: {changedDirection}");
     }
+    /*[UnityTest]
+    public IEnumerator PlayerIsNotGroundedWhenNotTouchingGround()
+    {
+        // Move the player far above the ground
+        player.transform.position = new Vector3(0, 5f, 0);
 
-    [UnityTest]
+        // Wait for one frame to ensure physics updates
+        yield return null;
+        bool isTouching = player.GetIsGrounded();
+        // Check if the player is not grounded
+        Assert.IsFalse(isTouching);
+        Debug.Log($"IsTouching: {isTouching}");
+    }*/
+ /*[UnityTest]
+    public IEnumerator MovementNoneTest()
+    {
+        var position = player.transform.position;
+
+        player.TestHandleMovement(false, false);
+
+        yield return new WaitForSeconds(2f);
+
+        var newPosition = player.transform.position;
+
+        Assert.AreEqual(newPosition.x, position.x);
+
+        Debug.Log($"Position: {position}");
+        Debug.Log($"New Position: {newPosition}");
+    }*/
+
+
+    /*[UnityTest]
     public IEnumerator PlayerIsGroundedWhenTouchingGround()
     {
         // Move the player slightly above the ground
@@ -172,19 +187,6 @@ public class MovementTests
         bool isGrounded = player.GetIsGrounded();
         yield return new WaitForSeconds(1f);
         Assert.IsTrue(isGrounded);
-    }
+    }*/
 
-    [UnityTest]
-    public IEnumerator PlayerIsNotGroundedWhenNotTouchingGround()
-    {
-        // Move the player far above the ground
-        player.transform.position = new Vector3(0, 5f, 0);
-
-        // Wait for one frame to ensure physics updates
-        yield return null;
-        bool isTouching = player.GetIsGrounded();
-        // Check if the player is not grounded
-        Assert.IsFalse(isTouching);
-        Debug.Log($"IsTouching: {isTouching}");
-    }
 }

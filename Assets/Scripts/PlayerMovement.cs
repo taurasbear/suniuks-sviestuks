@@ -30,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float moveSpeed = 8.5f;
+    [SerializeField] private float jumpForce = 13f;
 
 
     [SerializeField] private Transform wallCheck;

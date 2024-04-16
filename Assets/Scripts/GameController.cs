@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
     }
 }

@@ -215,10 +215,6 @@ public class PlayerMovement : MonoBehaviour
                 wallJumpKey = WallJumpKey.Up;
             }
         }
-        else
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
     }
 
     private void WallSlide(bool isMovingRight, bool isMovingLeft)

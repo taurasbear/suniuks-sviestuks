@@ -714,7 +714,6 @@ GameObject:
   - component: {fileID: 621081083}
   - component: {fileID: 621081082}
   - component: {fileID: 621081081}
-  - component: {fileID: 621081080}
   - component: {fileID: 621081079}
   m_Layer: 5
   m_Name: ButtonLevel6
@@ -753,18 +752,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &621081080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621081077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &621081081
@@ -873,7 +860,6 @@ GameObject:
   - component: {fileID: 682072126}
   - component: {fileID: 682072125}
   - component: {fileID: 682072124}
-  - component: {fileID: 682072123}
   - component: {fileID: 682072127}
   m_Layer: 5
   m_Name: ButtonLevel1
@@ -902,18 +888,6 @@ RectTransform:
   m_AnchoredPosition: {x: -349.45, y: 37}
   m_SizeDelta: {x: 253.6668, y: 135.9489}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &682072123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682072120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &682072124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,7 +1081,6 @@ GameObject:
   - component: {fileID: 900824026}
   - component: {fileID: 900824025}
   - component: {fileID: 900824024}
-  - component: {fileID: 900824023}
   - component: {fileID: 900824022}
   m_Layer: 5
   m_Name: ButtonLevel5
@@ -1146,18 +1119,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &900824023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900824020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &900824024
@@ -1266,7 +1227,6 @@ GameObject:
   - component: {fileID: 998353751}
   - component: {fileID: 998353750}
   - component: {fileID: 998353749}
-  - component: {fileID: 998353748}
   - component: {fileID: 998353747}
   m_Layer: 5
   m_Name: ButtonLevel2
@@ -1305,18 +1265,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &998353748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998353745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &998353749
@@ -1559,7 +1507,6 @@ GameObject:
   - component: {fileID: 1567465511}
   - component: {fileID: 1567465510}
   - component: {fileID: 1567465509}
-  - component: {fileID: 1567465508}
   - component: {fileID: 1567465507}
   m_Layer: 5
   m_Name: ButtonLevel4
@@ -1598,18 +1545,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1567465508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567465505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1567465509
@@ -1986,7 +1921,6 @@ GameObject:
   - component: {fileID: 1894837351}
   - component: {fileID: 1894837350}
   - component: {fileID: 1894837349}
-  - component: {fileID: 1894837348}
   - component: {fileID: 1894837347}
   m_Layer: 5
   m_Name: ButtonBack
@@ -2024,18 +1958,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1894837348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894837345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1894837349
@@ -2236,7 +2158,6 @@ GameObject:
   - component: {fileID: 1997422152}
   - component: {fileID: 1997422151}
   - component: {fileID: 1997422150}
-  - component: {fileID: 1997422149}
   - component: {fileID: 1997422148}
   m_Layer: 5
   m_Name: ButtonLevel3
@@ -2275,18 +2196,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e250b1ad4e050d84687c3910ca57303e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1997422149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997422146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1997422150

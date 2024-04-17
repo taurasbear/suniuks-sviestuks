@@ -446,7 +446,6 @@ GameObject:
   - component: {fileID: 610938942}
   - component: {fileID: 610938941}
   - component: {fileID: 610938940}
-  - component: {fileID: 610938939}
   - component: {fileID: 610938938}
   m_Layer: 5
   m_Name: ButtonSettings
@@ -485,18 +484,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 837df6e6d3bcbc04db4f8ae3741c98e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &610938939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610938936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &610938940
@@ -605,7 +592,6 @@ GameObject:
   - component: {fileID: 682072126}
   - component: {fileID: 682072125}
   - component: {fileID: 682072124}
-  - component: {fileID: 682072123}
   - component: {fileID: 682072122}
   m_Layer: 5
   m_Name: ButtonChooseLevel
@@ -644,18 +630,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 837df6e6d3bcbc04db4f8ae3741c98e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &682072123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682072120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &682072124
@@ -839,7 +813,6 @@ GameObject:
   - component: {fileID: 960109072}
   - component: {fileID: 960109071}
   - component: {fileID: 960109070}
-  - component: {fileID: 960109069}
   - component: {fileID: 960109068}
   m_Layer: 5
   m_Name: ButtonExit
@@ -878,18 +851,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 837df6e6d3bcbc04db4f8ae3741c98e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &960109069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960109066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5327117f880531949820a47e68f161fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &960109070

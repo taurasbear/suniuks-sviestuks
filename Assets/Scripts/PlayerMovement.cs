@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     bool isMovingLeft = false;
     bool isMovingUp = false;
 
+    public GameController gameManager;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -73,6 +75,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
+            //if (IsOnButter())
+            //{
+            //    gameManager.YouLose();
+            //}
             isMovingRight = Input.GetKey(KeyCode.D);
             isMovingLeft = Input.GetKey(KeyCode.A);
             bool jump = Input.GetKeyDown(KeyCode.W);
@@ -80,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
             HandleFacing();
 
-            WallSlide(isMovingRight, isMovingLeft);
+            //WallSlide(isMovingRight, isMovingLeft);
             Jump(jump, isMovingRight, isMovingLeft);
         }
         if (rb.name == "Player2")

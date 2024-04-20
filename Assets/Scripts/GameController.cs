@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject youWinUI;
     public GameObject youLoseUI;
+    public GameObject youCrushedButterUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,11 @@ public class GameController : MonoBehaviour
         youLoseUI.SetActive(true);
         Time.timeScale = 0f;
     }
+    public void YouCrushedButter()
+    {
+        youCrushedButterUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
     public void PlayAgain()
     {
        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -39,4 +46,10 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
     }
+    public void MainMeniu()
+    {
+        SceneManager.LoadScene("StartMenu");
+        Time.timeScale = 1f;
+    }
+
 }

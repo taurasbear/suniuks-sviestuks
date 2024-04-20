@@ -35,4 +35,10 @@ public class ChooseLevel : MonoBehaviour
         Debug.Log("Error: ButtonLevel6 function has yet to be implemented");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 6);
     }
+
+    public void QuickStart()
+    {
+        SceneManager.LoadScene("Level1");
+        Time.timeScale = 1f;
+    }
 }

@@ -14,7 +14,8 @@ public class ObstacleDeath : MonoBehaviour
             if (playerMovement != null)
             {
                 // Trigger the death sequence
-                playerMovement.Die();
+				playerMovement.Die();
+
             }
             else
             {
@@ -23,3 +24,4 @@ public class ObstacleDeath : MonoBehaviour
         }
     }
 }
+

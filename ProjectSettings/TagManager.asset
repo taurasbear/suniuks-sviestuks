@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 251557243
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3138936447
     locked: 0

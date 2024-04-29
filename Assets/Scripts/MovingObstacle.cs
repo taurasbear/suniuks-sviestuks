@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MovingObstacle : MonoBehaviour
 {
-	public float speed;
+    //////////////////////////////////////////////////// MOVING OBSTACLES BEHAVIOUR /////////////////////////////////////////////////////////////
+    public float speed;
 	Vector3 targetPos;
 
 	public GameObject ways;

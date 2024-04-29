@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class InstantDeath : MonoBehaviour
 {
+    //////////////////////////////////////////////////// DEATH ZONE BEHAVIOUR /////////////////////////////////////////////////////////////
     public GameController gameManager;
     private void OnCollisionEnter2D(Collision2D collision)
     {

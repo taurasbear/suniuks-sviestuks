@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Codice.Client.BaseCommands.Update.Fast.Transformers;
@@ -8,50 +9,57 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
+///////////////////////////////////////////////////// HEADER VARIABLES /////////////////////////////////////////////////////////////
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerMovement : MonoBehaviour
-{
+{ 
+    //Player body
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
-    // private Animator anim;
+    //Wall and being in air
     public static bool isAir;
     private bool isWallSliding;
-    private float wallSlidingSpeed = 1f;
     private bool isFacingRight = true;
+    private float wallSlidingSpeed = 1f;
     private float horizontal;
-
-
-    [SerializeField] private bool isAlive = true;
-    private float respawnTime = 1f;
-
-    private Stopwatch wallSlideTimer;
-    [SerializeField] private float wallSlideDuration = 0.4f;
-    private Vector2 respawnPoint;
-
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private float moveSpeed = 8.5f;
-    [SerializeField] private float jumpForce = 13f;
     private float wallJumpForce = 8.5f;
     private float lightWallJumpForce = 3f;
-    private enum WallJumpKey { None, Left, Right, Up }
-    private WallJumpKey wallJumpKey = WallJumpKey.None;
-
-
+    private Stopwatch wallSlideTimer;
+    [SerializeField] private float wallSlideDuration = 0.4f;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
     private float wallJumpCount = 0;
     private float jumpTimer = 0f;
     private float jumpCooldown = 1f;
+
+    //Death and respawn
+    [SerializeField] private bool isAlive = true;
+    private float respawnTime = 1f;
+    private Vector2 respawnPoint;
+
+    //Movement
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private float moveSpeed = 8.5f;
+    [SerializeField] private float jumpForce = 13f;
+
+    //Enum
+    private enum WallJumpKey { None, Left, Right, Up }
+    private WallJumpKey wallJumpKey = WallJumpKey.None;
     private enum MovementState { idle, running, jumping, falling }
 
     bool isMovingRight = false;
     bool isMovingLeft = false;
     bool isMovingUp = false;
 
+    //Animator
+    //private Animator anim
+
     public GameController gameManager;
 
+    //////////////////////////////////////////////////// PROGRAM START /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// MAIN //////////////////////////////////////////////////////////////////
     // Start is called before the first frame update
     public void Start()
     {
@@ -75,18 +83,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-            //if (IsOnButter())
-            //{
-            //    gameManager.YouLose();
-            //}
             isMovingRight = Input.GetKey(KeyCode.D);
             isMovingLeft = Input.GetKey(KeyCode.A);
             bool jump = Input.GetKeyDown(KeyCode.W);
+
             HandleMovement(isMovingRight, isMovingLeft);
-
             HandleFacing();
-
-            //WallSlide(isMovingRight, isMovingLeft);
             Jump(jump, isMovingRight, isMovingLeft);
         }
         if (rb.name == "Player2")
@@ -111,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
 
         // UpdateAnimationState();
     }
+    //////////////////////////////////////////////////// END OF MAIN /////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////// MOVEMENT /////////////////////////////////////////////////////////////
     private void HandleMovementKeys(ref bool isMovingRight, ref bool isMovingLeft, ref bool isMovingUp)
     {
         if (isMovingRight && wallJumpKey == WallJumpKey.Right)
@@ -151,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
         }
     }
+    //////////////////////////////////////////////////// WALL JUMP AND JUMP /////////////////////////////////////////////////////////////
     private void HandleFacing()
     {
         if (isFacingRight && rb.velocity.x < 0)
@@ -239,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = false;
         }
     }
-
+    //////////////////////////////////////////////////// RESPAWN AND DEATH /////////////////////////////////////////////////////////////
     public void SetRespawnPoint(Vector2 point)
     {
         respawnPoint = point;
@@ -258,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
         coll.enabled = false;
         StartCoroutine(Respawn());
     }
+    //////////////////////////////////////////////////// ANIMATIONS /////////////////////////////////////////////////////////////
     //private void UpdateAnimationState()
     //{
     //    MovementState state;
@@ -289,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
     //    anim.SetInteger("state", (int)state);
     //}
 
+    //////////////////////////////////////////////////// BOOL CHECKING /////////////////////////////////////////////////////////////
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
@@ -307,7 +314,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    // Methods for testing
+    //////////////////////////////////////////////////// FRO TESTING /////////////////////////////////////////////////////////////
     public Vector2 GetRespawnPoint()
     {
         return respawnPoint;
@@ -370,5 +377,5 @@ public class PlayerMovement : MonoBehaviour
     {
         return rb.velocity.x;
     }
-
+    //////////////////////////////////////////////////// END /////////////////////////////////////////////////////////////
 }

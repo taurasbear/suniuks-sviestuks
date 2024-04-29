@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    //////////////////////////////////////////////////// BUTTON BEHAVIOUR /////////////////////////////////////////////////////////////
     public void ChooseLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -10,6 +10,7 @@ public class FinishLevel : MonoBehaviour
 
     private BoxCollider2D coll;
     public GameController gameManager;
+    //////////////////////////////////////////////////// FINISH UI ACTIVATION /////////////////////////////////////////////////////////////
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other == player1 || other == player2)

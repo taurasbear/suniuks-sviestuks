@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class SawMovement : MonoBehaviour
 {
-	public float rotationSpeed = 100f;
+    //////////////////////////////////////////////////// SAW-ENEMY BEHAVIOUR /////////////////////////////////////////////////////////////
+    public float rotationSpeed = 100f;
 
 	void Update()
 	{

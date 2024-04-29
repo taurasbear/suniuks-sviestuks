@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObstacleDeath : MonoBehaviour
 {
+    //////////////////////////////////////////////////// OBSTACLE DAMAGE /////////////////////////////////////////////////////////////
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the colliding object is the player character

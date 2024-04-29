@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//////////////////////////////////////////////////// STANDING ON BUTTER BEHAVIOUR /////////////////////////////////////////////////////////////
 public class IsOnButter : MonoBehaviour
 {
     public GameController gameManager;

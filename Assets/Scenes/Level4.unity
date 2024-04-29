@@ -1338,18 +1338,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654ac9016ab606e44b5c4658c262d155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
   wallSlideDuration: 0.4
+  wallCheck: {fileID: 407129882}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  isAlive: 1
   rb: {fileID: 509933930}
   jumpableGround:
     serializedVersion: 2
     m_Bits: 200
   moveSpeed: 8.3
   jumpForce: 13
-  wallCheck: {fileID: 407129882}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 128
   gameManager: {fileID: 0}
 --- !u!50 &509933930
 Rigidbody2D:
@@ -2401,18 +2401,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654ac9016ab606e44b5c4658c262d155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
   wallSlideDuration: 0.4
+  wallCheck: {fileID: 275782835}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  isAlive: 1
   rb: {fileID: 703405029}
   jumpableGround:
     serializedVersion: 2
     m_Bits: 136
   moveSpeed: 7
   jumpForce: 17
-  wallCheck: {fileID: 275782835}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 128
   gameManager: {fileID: 0}
 --- !u!95 &703405034
 Animator:
@@ -4696,7 +4696,7 @@ Transform:
   m_GameObject: {fileID: 1256867888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.5, y: -19.5, z: 0}
+  m_LocalPosition: {x: -59.6, y: -19.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

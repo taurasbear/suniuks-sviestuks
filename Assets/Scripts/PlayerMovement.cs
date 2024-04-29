@@ -1,13 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Threading;
-using Codice.Client.BaseCommands.Update.Fast.Transformers;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 ///////////////////////////////////////////////////// HEADER VARIABLES /////////////////////////////////////////////////////////////
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     //Wall and being in air
     public static bool isAir;
-    private bool isWallSliding;
+    private bool isWallSliding ;
     private bool isFacingRight = true;
     private float wallSlidingSpeed = 1f;
     private float horizontal;

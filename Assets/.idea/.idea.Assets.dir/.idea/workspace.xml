@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="13d97ccd-38fe-4586-964a-871518c87e78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdleAnimations/idle dog/Player1 1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/IdleAnimations/idle dog/Player1 1.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +38,7 @@
       <updated>1709732702119</updated>
       <workItem from="1709732706028" duration="598000" />
       <workItem from="1712353469593" duration="765000" />
+      <workItem from="1715101094855" duration="2846000" />
     </task>
     <servers />
   </component>

@@ -47,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
   bool isMovingUp = false;
   bool jump = false;
 
+  // For frozing
+  bool isFrozen = false;
+  private float warmUpDuration = 3f; // Duration in seconds for warming up
+  private float warmUpRadius = 1.5f; // Adjust this value as needed
+  private bool isNearOtherPlayer = false;
+  private Color freezeColor = new Color(0.2f, 0.5f, 0.6f, 1f);
+
+
   //For PlayMode tests
   public bool isTest { get; set; } = false;
 
@@ -76,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
 
     if (rb.name == "Player1")
     {
+      rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
       if (!isAlive)
       {
         return;
@@ -92,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
       Jump(jump, isMovingRight, isMovingLeft);
     }
     if (rb.name == "Player2")
-    {
+    {       
       if (!isAlive)
       {
         return;
@@ -113,8 +123,7 @@ public class PlayerMovement : MonoBehaviour
       WallSlide(isMovingRight, isMovingLeft);
       Jump(jump, isMovingRight, isMovingLeft);
     }
-
-
+    HandleFreeze();
     // UpdateAnimationState();
   }
   //////////////////////////////////////////////////// END OF MAIN /////////////////////////////////////////////////////////////
@@ -248,6 +257,63 @@ public class PlayerMovement : MonoBehaviour
       isWallSliding = false;
     }
   }
+  /////////// ICE ICE BABY ////////////////
+  public void HandleIceTerrainInteraction(Collider2D iceTerrainCollider)
+  {
+   // UnityEngine.Debug.Log("HandleIceTerrainInteraction called");
+
+    if (rb.name == "Player2" && !isFrozen)
+    {
+      // Freeze the player character
+      rb.constraints = RigidbodyConstraints2D.FreezeAll;
+      isFrozen = true;
+      sprite.color = freezeColor;
+
+      // UnityEngine.Debug.Log("Player 2 is frozen");
+    }
+  }
+  void HandleFreeze()
+  {
+    if (rb.name == "Player2")
+    {
+      // Check if the player character is near the other player and if it's frozen
+      if (IsNearOtherPlayer("Player1") && isFrozen)
+      {
+        // Decrease warm-up duration
+        warmUpDuration -= Time.deltaTime;
+
+        // Check if warm-up duration has elapsed
+        if (warmUpDuration <= 0f)
+        {
+          // Warm up the player character
+          WarmUp();
+          warmUpDuration = 2f; // Reset warm-up duration
+        }
+      }
+    }
+  }
+
+
+  private bool IsNearOtherPlayer(string otherPlayerName)
+  {
+    GameObject otherPlayer = GameObject.Find(otherPlayerName);
+    if (otherPlayer != null)
+    {
+      float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
+      return distance <= warmUpRadius;
+    }
+    return false;
+  }
+
+  public void WarmUp()
+  {
+    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    isFrozen = false;
+    sprite.color = Color.white;
+
+  }
+
+
   //////////////////////////////////////////////////// RESPAWN AND DEATH /////////////////////////////////////////////////////////////
   public void SetRespawnPoint(Vector2 point)
   {

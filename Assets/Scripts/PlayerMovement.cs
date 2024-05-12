@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private float wallSlideDuration = 0.4f;
   [SerializeField] private Transform wallCheck;
   [SerializeField] private LayerMask wallLayer;
+
   private float wallJumpCount = 0;
   private float jumpTimer = 0f;
   private float jumpCooldown = 1f;
@@ -54,6 +55,14 @@ public class PlayerMovement : MonoBehaviour
   private bool isNearOtherPlayer = false;
   private Color freezeColor = new Color(0.2f, 0.5f, 0.6f, 1f);
 
+  // Dog check
+  [SerializeField] private Transform dogCheck;
+  [SerializeField] private LayerMask dogLayer;
+  
+  // For sounds
+  public AudioClip butterDogSound;
+  private AudioSource audioSource;
+  private bool isDogSoundPlaying = false;
 
   //For PlayMode tests
   public bool isTest { get; set; } = false;
@@ -72,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
     coll = GetComponent<BoxCollider2D>();
     sprite = GetComponent<SpriteRenderer>();
+    audioSource = GetComponent<AudioSource>();
     wallSlideTimer = new Stopwatch();
     SetRespawnPoint(transform.position);
     //  anim = GetComponent<Animator>();
@@ -122,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
       WallSlide(isMovingRight, isMovingLeft);
       Jump(jump, isMovingRight, isMovingLeft);
+      PlaySound();
     }
     HandleFreeze();
     // UpdateAnimationState();
@@ -333,6 +344,22 @@ public class PlayerMovement : MonoBehaviour
     coll.enabled = false;
     StartCoroutine(Respawn());
   }
+
+
+
+  //////////////////////////////////////////////////// SOUNDS /////////////////////////////////////////////////////////////
+  public void PlaySound()
+  {
+    if (isOnDog() && !isDogSoundPlaying)
+    {
+      audioSource.PlayOneShot(butterDogSound);
+      isDogSoundPlaying = true;
+    }
+    else if(!isOnDog())
+    {
+      isDogSoundPlaying = false;
+    }
+  }
   //////////////////////////////////////////////////// ANIMATIONS /////////////////////////////////////////////////////////////
   //private void UpdateAnimationState()
   //{
@@ -374,6 +401,10 @@ public class PlayerMovement : MonoBehaviour
   private bool IsWalled()
   {
     return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+  }
+  private bool isOnDog()
+  {
+    return Physics2D.OverlapCircle(dogCheck.position, 0.2f, dogLayer);
   }
   private void Flip()
   {

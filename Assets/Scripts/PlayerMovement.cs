@@ -90,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   public void Update()
   {
+
     horizontal = Input.GetAxisRaw("Horizontal");
 
     if (rb.name == "Player1")

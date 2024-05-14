@@ -6,11 +6,12 @@ using UnityEngine;
 public class IsOnButter : MonoBehaviour
 {
     public GameController gameManager;
-    [SerializeField] private LayerMask isOnTopOfButter;
+    [SerializeField] private LayerMask dog;
     [SerializeField] private Rigidbody2D rb;
     private BoxCollider2D coll;
+    [SerializeField] private Transform crushCheck;
 
-    private void Start()
+  private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -28,8 +29,8 @@ public class IsOnButter : MonoBehaviour
             }
         }
     }
-    private bool IsOnButterCheck()
-    {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, isOnTopOfButter);
-    }
-}
+  private bool IsOnButterCheck()
+  {
+    return Physics2D.OverlapCircle(crushCheck.position, 0.1f, dog);
+  }
+  }

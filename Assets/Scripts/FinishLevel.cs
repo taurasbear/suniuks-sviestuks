@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class FinishLevel : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class FinishLevel : MonoBehaviour
     player2Coll = Player2.GetComponent<BoxCollider2D>();
     player1Item = Player1.GetComponent<ItemCollector>();
     player2Item = Player2.GetComponent<ItemCollector>();
+  }
+  private void Update()
+  {
+    gameManager.keysScore.text = "Keys: " + ((int)player1Item.GetKeyCount() + (int)player2Item.GetKeyCount()) + "/"+ KeyCountToWin;
   }
   //////////////////////////////////////////////////// FINISH UI ACTIVATION /////////////////////////////////////////////////////////////
   private void OnTriggerEnter2D(Collider2D other)

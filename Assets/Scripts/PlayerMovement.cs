@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
@@ -58,11 +59,16 @@ public class PlayerMovement : MonoBehaviour
   // Dog check
   [SerializeField] private Transform dogCheck;
   [SerializeField] private LayerMask dogLayer;
-  
+
   // For sounds
-  public AudioClip butterDogSound;
-  private AudioSource audioSource;
+  public AudioSource dogJumping;
+  public AudioSource dogWalking;
+  public AudioSource butterJumping;
+  public AudioSource butterWalking;
+  public AudioSource sviestuksSuniuks;
   private bool isDogSoundPlaying = false;
+  private bool isWalkPlaying = false;
+  private Stopwatch stopWalkTimer;
 
   //For PlayMode tests
   public bool isTest { get; set; } = false;
@@ -81,16 +87,20 @@ public class PlayerMovement : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
     coll = GetComponent<BoxCollider2D>();
     sprite = GetComponent<SpriteRenderer>();
-    audioSource = GetComponent<AudioSource>();
     wallSlideTimer = new Stopwatch();
+    stopWalkTimer = new Stopwatch();
     SetRespawnPoint(transform.position);
+
+    if(rb.name == "Player2")
+    {
+      butterWalking.pitch = 1.1f;
+    }
     //  anim = GetComponent<Animator>();
   }
 
   // Update is called once per frame
   public void Update()
   {
-
     horizontal = Input.GetAxisRaw("Horizontal");
 
     if (rb.name == "Player1")
@@ -113,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
       Jump(jump, isMovingRight, isMovingLeft);
     }
     if (rb.name == "Player2")
-    {       
+    {
       if (!isAlive)
       {
         return;
@@ -133,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
 
       WallSlide(isMovingRight, isMovingLeft);
       Jump(jump, isMovingRight, isMovingLeft);
-      PlaySound();
+      PlayOnTopSound();
     }
     HandleFreeze();
     // UpdateAnimationState();
@@ -165,10 +175,16 @@ public class PlayerMovement : MonoBehaviour
     if (isMovingRight)
     {
       horizontalInput = 1f;
+      HandleWalkSound();
     }
     else if (isMovingLeft)
     {
       horizontalInput = -1f;
+      HandleWalkSound();
+    }
+    else
+    {
+      HandleStopWalk();
     }
 
     if (wallJumpKey == WallJumpKey.None || IsGrounded())
@@ -200,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
       {
         // jumpSoundEffect.Play();
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        PlayButterJump();
       }
       else if (jump && !IsGrounded() && IsWalled() && wallJumpCount < 1)
       {
@@ -212,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
       {
         wallJumpCount = 0;
       }
+
     }
     if (rb.name == "Player1")
     {
@@ -219,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
       {
         // jumpSoundEffect.Play();
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        PlayDogJump();
       }
     }
 
@@ -272,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
   /////////// ICE ICE BABY ////////////////
   public void HandleIceTerrainInteraction(Collider2D iceTerrainCollider)
   {
-   // UnityEngine.Debug.Log("HandleIceTerrainInteraction called");
+    // UnityEngine.Debug.Log("HandleIceTerrainInteraction called");
 
     if (rb.name == "Player2" && !isFrozen)
     {
@@ -349,18 +368,69 @@ public class PlayerMovement : MonoBehaviour
 
 
   //////////////////////////////////////////////////// SOUNDS /////////////////////////////////////////////////////////////
-  public void PlaySound()
+  public void PlayOnTopSound()
   {
     if (isOnDog() && !isDogSoundPlaying)
     {
-      audioSource.PlayOneShot(butterDogSound);
+      sviestuksSuniuks.Play();
       isDogSoundPlaying = true;
     }
-    else if(!isOnDog())
+    else if (!isOnDog())
     {
       isDogSoundPlaying = false;
     }
   }
+  public void PlayDogJump()
+  {
+    dogJumping.Play();
+    HandleStopWalk();
+  }
+  public void PlayDogWalk()
+  {
+    dogWalking.Play();
+  }
+
+  public void PlayButterJump()
+  {
+    butterJumping.Play();
+    HandleStopWalk();
+  }
+
+  public void PlayButterWalk()
+  {
+    butterWalking.Play();
+  }
+
+  public void HandleWalkSound()
+  {
+    if (rb.name == "Player1" && !isWalkPlaying && IsGrounded() && stopWalkTimer.Elapsed.TotalMilliseconds > 200)
+    {
+      PlayDogWalk();
+      isWalkPlaying = true;
+    }
+    else if (rb.name == "Player2" && !isWalkPlaying && IsGrounded() && stopWalkTimer.Elapsed.TotalMilliseconds > 200)
+    {
+      PlayButterWalk();
+      isWalkPlaying = true;
+    }
+  }
+
+  public void HandleStopWalk()
+  {
+    if (rb.name == "Player1")
+    {
+      dogWalking.Stop();
+      isWalkPlaying = false;
+      stopWalkTimer.Restart();
+    }
+    else if (rb.name == "Player2")
+    {
+      butterWalking.Stop();
+      isWalkPlaying = false;
+      stopWalkTimer.Restart();
+    }
+  }
+
   //////////////////////////////////////////////////// ANIMATIONS /////////////////////////////////////////////////////////////
   //private void UpdateAnimationState()
   //{
@@ -439,7 +509,7 @@ public class PlayerMovement : MonoBehaviour
   }
   public void SetIsMovingLeft(bool flag)
   {
-    isMovingLeft= flag;
+    isMovingLeft = flag;
   }
   public void SetIsMovingRight(bool flag)
   {

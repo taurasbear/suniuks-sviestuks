@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    //////////////////////////////////////////////////// BUTTON BEHAVIOUR /////////////////////////////////////////////////////////////
-    public void ChooseLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    public void Settings()
-    {
-        Debug.Log("Error: ButtonSettings function has yet to be implemented");
-    }
-    public void Exit()
-    {
-        Application.Quit();
-    }
+  //////////////////////////////////////////////////// BUTTON BEHAVIOUR /////////////////////////////////////////////////////////////
+
+  public void Settings()
+  {
+    //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    SceneManager.LoadScene("Settings");
+  }
+  public void ChooseLevel()
+  {
+    //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    SceneManager.LoadScene("ChooseLevel");
+  }
+
+  public void Exit()
+  {
+    Application.Quit();
+  }
 }

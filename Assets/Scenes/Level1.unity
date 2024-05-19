@@ -1852,19 +1852,19 @@ MonoBehaviour:
   rb: {fileID: 0}
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 200
   moveSpeed: 8.3
   jumpForce: 13
   dogCheck: {fileID: 2144734910}
   dogLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   dogJumping: {fileID: 0}
   dogWalking: {fileID: 0}
   butterJumping: {fileID: 509933938}
   butterWalking: {fileID: 509933937}
   sviestuksSuniuks: {fileID: 509933936}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1153459822}
 --- !u!50 &509933930
 Rigidbody2D:
   serializedVersion: 4
@@ -4024,7 +4024,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
   moveSpeed: 7
   jumpForce: 17
   dogCheck: {fileID: 0}
@@ -4036,7 +4036,7 @@ MonoBehaviour:
   butterJumping: {fileID: 0}
   butterWalking: {fileID: 0}
   sviestuksSuniuks: {fileID: 0}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1153459822}
 --- !u!95 &703405034
 Animator:
   serializedVersion: 5

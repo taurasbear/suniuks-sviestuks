@@ -1173,7 +1173,7 @@ Transform:
   m_GameObject: {fileID: 161537152}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.850876, y: -7.8040113, z: 2.8745196}
+  m_LocalPosition: {x: -24.135178, y: -7.3133416, z: 1.8667762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4687,7 +4687,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.29605, y: -7.25409, z: -1.0481176}
+  m_LocalPosition: {x: -23.345524, y: -6.8441, z: -2.055861}
   m_LocalScale: {x: 1, y: 0.9949, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8056,8 +8056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb9bf6905fba249a54b231ea93ffd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 703405028}
-  Player2: {fileID: 509933923}
+  Player1: {fileID: 1159809004}
+  Player2: {fileID: 2122359272}
   KeyCountToWin: 3
   gameManager: {fileID: 1305631497}
 --- !u!1 &916043419
@@ -13896,7 +13896,7 @@ Transform:
   m_GameObject: {fileID: 1675378063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.850876, y: -8.504012, z: 3.8745196}
+  m_LocalPosition: {x: -24.432316, y: -8.020579, z: 3.874464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13918,10 +13918,10 @@ MonoBehaviour:
   m_RotationMode: 0
   m_UpdateMethod: 2
   m_Targets:
-  - target: {fileID: 703405032}
+  - target: {fileID: 1159809015}
     weight: 1
     radius: 1
-  - target: {fileID: 509933928}
+  - target: {fileID: 2122359282}
     weight: 1
     radius: 1
 --- !u!1001 &1675783064

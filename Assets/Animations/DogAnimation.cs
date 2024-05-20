@@ -42,7 +42,6 @@ public class DogAnimation : MonoBehaviour
         {
           mAnimator.SetBool("Lay", true);
           // Set animator state to idle state
-          
         }
       }
     }

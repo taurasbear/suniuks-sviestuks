@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
   public bool isTest { get; set; } = false;
 
   //Animator
-  //private Animator anim
+  private Animator anim;
 
   public GameController gameManager;
 
@@ -83,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
   // Start is called before the first frame update
   public void Start()
   {
-
     rb = GetComponent<Rigidbody2D>();
     coll = GetComponent<BoxCollider2D>();
     sprite = GetComponent<SpriteRenderer>();
@@ -95,7 +95,8 @@ public class PlayerMovement : MonoBehaviour
     {
       butterWalking.pitch = 1.1f;
     }
-    //  anim = GetComponent<Animator>();
+    anim = GetComponent<Animator>();
+    UnityEngine.Debug.Log(anim);
   }
 
   // Update is called once per frame
@@ -323,13 +324,14 @@ public class PlayerMovement : MonoBehaviour
       }
     }
   }
-
-
+  
   private bool IsNearOtherPlayer(string otherPlayerName)
   {
     GameObject otherPlayer = GameObject.Find(otherPlayerName);
+    anim = otherPlayer.GetComponent<Animator>();
     if (otherPlayer != null)
     {
+      anim.SetBool("Warm", true);
       float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
       return distance <= warmUpRadius;
     }

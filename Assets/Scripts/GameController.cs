@@ -37,13 +37,13 @@ public class GameController : MonoBehaviour
   public void ESCMenuActive()
   {
     ESC.SetActive(true);
-    Debug.Log("--> Should've OPENED ESC menu");
+    //Debug.Log("--> Should've OPENED ESC menu");
     Time.timeScale = 0f;
   }
   public void ESCMenuInActive()
   {
     ESC.SetActive(false);
-    Debug.Log("--> Should've CLOSED ESC menu");
+    //Debug.Log("--> Should've CLOSED ESC menu");
     Time.timeScale = 1f;
   }
   public bool IsESCMenuActive()
@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
   {
     ESC.SetActive(false);
     settings.SetActive(true);
-    Debug.Log("--> SettingsOpen() did fuck all");
+    //Debug.Log("--> SettingsOpen() did fuck all");
 
     //Time.timeScale = 0f;
   }
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
   {
     ESC.SetActive(true);
     settings.SetActive(false);
-    Debug.Log("--> SettingsClose() did fuck all");
+    //Debug.Log("--> SettingsClose() did fuck all");
   }
   public bool IsSettingsMenuActive()
   {

@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
   // For frozing
   bool isFrozen = false;
-  private float warmUpDuration = 3f; // Duration in seconds for warming up
+  private float warmUpDuration = 10f; // Duration in seconds for warming up
   private float warmUpRadius = 1.5f; // Adjust this value as needed
   private bool isNearOtherPlayer = false;
   private Color freezeColor = new Color(0.2f, 0.5f, 0.6f, 1f);
@@ -107,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
     if (rb.name == "Player1")
     {
       rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
       if (!isAlive)
       {
         return;
@@ -311,6 +310,7 @@ public class PlayerMovement : MonoBehaviour
       // Check if the player character is near the other player and if it's frozen
       if (IsNearOtherPlayer("Player1") && isFrozen)
       {
+        anim.SetBool("Warming", true);
         // Decrease warm-up duration
         warmUpDuration -= Time.deltaTime;
 
@@ -319,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
         {
           // Warm up the player character
           WarmUp();
-          warmUpDuration = 2f; // Reset warm-up duration
+          warmUpDuration = 10f; // Reset warm-up duration
         }
       }
     }
@@ -331,7 +331,6 @@ public class PlayerMovement : MonoBehaviour
     anim = otherPlayer.GetComponent<Animator>();
     if (otherPlayer != null)
     {
-      anim.SetBool("Warm", true);
       float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
       return distance <= warmUpRadius;
     }
@@ -344,6 +343,7 @@ public class PlayerMovement : MonoBehaviour
     isFrozen = false;
     sprite.color = Color.white;
 
+    anim.SetBool("Warming", false);
   }
 
 

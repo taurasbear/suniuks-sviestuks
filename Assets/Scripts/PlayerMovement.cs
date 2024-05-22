@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
   // For frozing
   bool isFrozen = false;
-  private float warmUpDuration = 10f; // Duration in seconds for warming up
+  private float warmUpDuration = 4f; // Duration in seconds for warming up
   private float warmUpRadius = 1.5f; // Adjust this value as needed
   private bool isNearOtherPlayer = false;
   private Color freezeColor = new Color(0.2f, 0.5f, 0.6f, 1f);
@@ -319,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
         {
           // Warm up the player character
           WarmUp();
-          warmUpDuration = 10f; // Reset warm-up duration
+          warmUpDuration = 4f; // Reset warm-up duration
         }
       }
     }
